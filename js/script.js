@@ -2,7 +2,7 @@
 var car = [{type: 'Audi', model: 'A5', color: 'Rot'}];
 
 /*
-gibt ein auto mit der gewünschten id zurück
+gibt ein auto mit der gewünschten id zurück 
 */
 
 
