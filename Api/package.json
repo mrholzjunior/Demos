@@ -1,0 +1,10 @@
+{
+    "name": "chat-api",
+    "description": "Chat Application Api",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "4.15.4",
+		"body-parser" : "1.17.2"
+    }
+}
