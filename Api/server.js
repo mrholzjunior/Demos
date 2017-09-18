@@ -8,15 +8,24 @@ app.set('port', (process.env.PORT || port));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-var history = [];
-var users = [];
+var cars = [{
+    id: 0,
+    type: 'a4',
+    brand: 'audi',
+    color: 'black'
+},
+{
+    id: 1,
+    type: 'm4',
+    brand: 'bmw',
+    color: 'white'
+}];
 
 // Add headers
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -37,42 +46,26 @@ app.get('/', function (req, res) {
     res.json({ message: 'it works...' });
 });
 
-// history
-app.get('/history', function (req, res) {
-    res.send(history);
+// get
+app.get('/cars', function (req, res) {
+    res.send(cars);
 });
 
-app.post('/history', function (req, res) {
-    var date = new Date();
-
-    console.log(req.body);
-    history.push({ message: req.body.message, username: req.body.username, date: date });
-
-    res.json({ message: 'History created!' });
-});
-
-// users
-app.get('/users', function (req, res) {
-    res.send(users);
-});
-
-app.get('/users/:id', function (req, res) {
-    for (var i = 0; users.length > 0; i++) {
-        if (users[i] && users[i].id === req.params.id) {
-            res.send({ username: users[i].username, id: users[i].id });
+// get by id
+app.get('/cars/:id', function (req, res) {
+    for (var i = 0; cars.length > i; i++) {
+        if (cars[i] && cars[i].id.toString() === req.params.id) {
+            res.send(cars[i]);
         }
     }
 });
 
-app.post('/users', function (req, res) {
-    console.log(req.body);
-    users.push({ username: req.body.username, id: users.length + 1 });
+// post
+app.post('/cars', function (req, res) {
+    cars.push({ id: req.body.id, type: req.body.type, brand: req.body.brand, color: req.body.color });
 
-    res.json({ username: req.body.username });
+    res.json({ message: 'car created!' });
 });
-
-// app.listen(port);
-// console.log('Listening on port: ' + port);
 
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));

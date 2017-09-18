@@ -1,17 +1,13 @@
 {
-    "name": "chat-api",
-    "description": "Chat Application Api",
+    "name": "demo-api",
+    "description": "Demo Api",
     "version": "0.0.1",
     "private": true,
-    "engines": {
-        "node": "6.11.1"
-    },
-    "main": "server.js",
     "scripts": {
         "start": "node server.js"
     },
     "dependencies": {
         "express": "4.15.4",
-        "body-parser": "1.17.2"
+        "body-parser": "1.18.1"
     }
 }
